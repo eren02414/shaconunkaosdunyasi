@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shaconun Kaos Dünyası — Yönetim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/theme.css">
+  <style>
+    body { display: flex; flex-direction: column; height: 100vh; margin: 0; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <div class="brand-bar">
+    <span class="brand-mark">Shaconun <span>Kaos Dünyası</span></span>
+    <span class="brand-sub">— Yönetim Paneli</span>
+  </div>
+
+  <header class="top-header">
+    <div class="whoami">Yetkili: <strong id="current-username"></strong></div>
+    <button id="logout-btn">Çıkış Yap</button>
+  </header>
+
+  <nav class="tabs-top">
+    <button class="top-tab-btn active" data-toptab="toptab-bans">Cezalılar</button>
+    <button class="top-tab-btn" data-toptab="toptab-requests">Oyuncu ve Üye Talepleri</button>
+  </nav>
+
+  <main id="toptab-bans" class="top-tab-panel active">
+    <nav id="username-tabs"></nav>
+
+    <section id="ban-panel">
+      <div id="ban-panel-header">
+        <h2>Cezalılar — <span id="selected-username" style="color:var(--accent);"></span></h2>
+        <button id="add-ban-btn" title="Yeni ceza ekle">+</button>
+      </div>
+      <div id="ban-list"></div>
+    </section>
+  </main>
+
+  <section id="toptab-requests" class="top-tab-panel">
+    <div id="requests-panel">
+      <h3>Oturum Talepleri (yeni hesap istekleri)</h3>
+      <div id="session-requests-list"></div>
+
+      <h3>Ceza İndirimi Talepleri</h3>
+      <div id="discount-requests-list"></div>
+    </div>
+  </section>
+
+  <dialog id="approve-session-modal">
+    <h3>Oturum Talebini Onayla</h3>
+    <form id="approve-session-form">
+      <p id="approve-session-username" style="color: var(--text-dim); font-size:13px;"></p>
+      <label>
+        Rol
+        <select id="approve-role">
+          <option value="player">Oyuncu</option>
+          <option value="member">Üye</option>
+        </select>
+      </label>
+      <label id="approve-tier-label" style="display:none;">
+        Tier
+        <select id="approve-tier">
+          <option value="">Yok</option>
+          <option value="RP+">RP+</option>
+          <option value="Modlu+">Modlu+</option>
+          <option value="Youtuber">Youtuber</option>
+          <option value="VIP">VIP</option>
+        </select>
+      </label>
+      <label>
+        Geçici Şifre
+        <input type="text" id="approve-password" required />
+      </label>
+      <p id="approve-session-error" class="field-error"></p>
+      <div class="modal-actions">
+        <button type="button" id="close-approve-modal-btn">İptal</button>
+        <button type="submit" class="btn-primary">Onayla ve Hesap Oluştur</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="add-ban-modal">
+    <h3>Yeni Ceza Ekle</h3>
+    <form id="add-ban-form">
+      <label>
+        Kullanıcı Adı
+        <input type="text" id="ban-username" required />
+      </label>
+      <label>
+        Steam ID
+        <input type="text" id="ban-steamid" />
+      </label>
+      <label>
+        IP Adresi
+        <input type="text" id="ban-ip" />
+      </label>
+      <label>
+        Sebep
+        <input type="text" id="ban-reason" required />
+      </label>
+      <label>
+        Süre (dakika)
+        <input type="number" id="ban-duration" min="1" required />
+      </label>
+      <p id="form-error" class="field-error"></p>
+      <div class="modal-actions">
+        <button type="button" id="close-modal-btn">İptal</button>
+        <button type="submit" class="btn-primary">Kaydet</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="./js/adminPanel.js"></script>
+</body>
+</html>

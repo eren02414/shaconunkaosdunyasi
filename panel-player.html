@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shaconun Kaos Dünyası — Panelim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/theme.css">
+</head>
+<body>
+  <div class="brand-bar">
+    <span class="brand-mark">Shaconun <span>Kaos Dünyası</span></span>
+    <span class="brand-sub">— Panelim</span>
+  </div>
+
+  <header class="top-header">
+    <div class="whoami">Kullanıcı: <strong id="current-username"></strong></div>
+    <button id="logout-btn">Çıkış Yap</button>
+  </header>
+
+  <div class="narrow-main">
+    <section id="tier-section" style="display:none;">
+      <span id="tier-badge"></span>
+      <ul id="tier-perks"></ul>
+    </section>
+
+    <div class="tabs">
+      <button class="panel-tab-btn active" data-tab="tab-bans">Cezalarım</button>
+      <button class="panel-tab-btn" data-tab="tab-discount" id="discount-tab-btn" style="display:none;">Ceza İndirimi Talebi</button>
+    </div>
+
+    <section id="tab-bans" class="panel-tab active" style="padding-top:20px;">
+      <div id="my-ban-list"></div>
+    </section>
+
+    <section id="tab-discount" class="panel-tab" style="padding-top:20px;">
+      <form id="discount-form">
+        <label>
+          Hangi ceza için indirim istiyorsun?
+          <select id="discount-ban-select"></select>
+        </label>
+        <label>
+          Talep edilen indirim (saat)
+          <input type="number" id="discount-hours" min="1" required />
+        </label>
+        <p id="discount-error" class="field-error"></p>
+        <button type="submit" class="btn-primary">Talebi Gönder</button>
+      </form>
+
+      <h3 style="margin-top:28px; font-size:13px; color:var(--text-dim);">Geçmiş Taleplerim</h3>
+      <div id="my-discount-requests"></div>
+    </section>
+  </div>
+
+  <script type="module" src="./js/playerPanel.js"></script>
+</body>
+</html>

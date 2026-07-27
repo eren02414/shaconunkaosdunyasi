@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shaconun Kaos Dünyası — Giriş</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/theme.css">
+</head>
+<body>
+  <div class="brand-bar">
+    <span class="brand-mark">Shaconun <span>Kaos Dünyası</span></span>
+    <span class="brand-sub">— Sunucu Paneli</span>
+  </div>
+
+  <div class="login-shell">
+    <h1 style="font-size: 20px;">Giriş Yap</h1>
+    <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 20px;">Oyundaki kullanıcı adınla giriş yap.</p>
+    <form id="login-form">
+      <label>
+        Kullanıcı Adı
+        <input type="text" id="username" required />
+      </label>
+      <label>
+        Şifre
+        <input type="password" id="password" required />
+      </label>
+      <p id="error-message" class="field-error"></p>
+      <button type="submit" class="btn-primary" style="width:100%;">Giriş Yap</button>
+    </form>
+    <p style="text-align:center; margin-top:18px; font-size:13px;">
+      <a href="/oturum-talebi.html">Hesabın yok mu? Oturum talebi aç →</a>
+    </p>
+  </div>
+
+  <script type="module">
+    import { loginWithUsername } from "./js/auth.js";
+
+    const form = document.getElementById("login-form");
+    const errorEl = document.getElementById("error-message");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorEl.textContent = "";
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const userData = await loginWithUsername(username, password);
+
+        if (userData.role === "admin" || userData.role === "moderator") {
+          window.location.href = "/panel-admin.html";
+        } else {
+          window.location.href = "/panel-player.html";
+        }
+      } catch (err) {
+        errorEl.textContent = err.message;
+      }
+    });
+  </script>
+</body>
+</html>

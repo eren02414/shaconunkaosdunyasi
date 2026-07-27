@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shaconun Kaos Dünyası — Oturum Talebi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/theme.css">
+</head>
+<body>
+  <div class="brand-bar">
+    <span class="brand-mark">Shaconun <span>Kaos Dünyası</span></span>
+    <span class="brand-sub">— Sunucu Paneli</span>
+  </div>
+
+  <div class="narrow-main">
+    <div class="login-shell" style="max-width:100%; margin:0;">
+      <h1 style="font-size:20px;">Oturum Talebi</h1>
+      <p style="color: var(--text-dim); font-size:13px; margin-bottom:20px;">
+        Hesabın yoksa buradan talep aç. Bir yetkili onayladığında sana giriş şifren iletilecek.
+      </p>
+
+      <form id="session-request-form">
+        <label>
+          Kullanıcı Adı (oyundaki ile aynı olmalı)
+          <input type="text" id="username" required />
+        </label>
+        <label>
+          Steam ID (varsa)
+          <input type="text" id="steamid" />
+        </label>
+        <label>
+          Talep Sebebi
+          <textarea id="reason" rows="3" required></textarea>
+        </label>
+        <p id="error-message" class="field-error"></p>
+        <p id="success-message" class="field-success"></p>
+        <button type="submit" class="btn-primary" style="width:100%;">Talebi Gönder</button>
+      </form>
+
+      <p style="text-align:center; margin-top:18px; font-size:13px;">
+        <a href="/index.html">← Giriş sayfasına dön</a>
+      </p>
+    </div>
+  </div>
+
+  <script type="module" src="./js/sessionRequestForm.js"></script>
+</body>
+</html>
